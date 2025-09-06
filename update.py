@@ -12,7 +12,7 @@ import requests
 
 
 _SOURCE_FILE_URL: Final = \
-	"https://raw.githubusercontent.com/astral-sh/ruff/HEAD/crates/ty_vendored/ty_extensions/ty_extensions.pyi"
+	'https://raw.githubusercontent.com/astral-sh/ruff/HEAD/crates/ty_vendored/ty_extensions/ty_extensions.pyi'
 
 _PROJECT_ROOT: Final = Path(__file__).parent
 _TY_EXTENSIONS_PYI: Final = _PROJECT_ROOT / 'src' / 'ty_extensions' / '__init__.pyi'
