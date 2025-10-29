@@ -41,6 +41,7 @@ jobs:
         if: ${{ steps.check.outputs.modified }}
         run: |
           uv version --bump dev
+          uv lock
       -
         name: Commit and push
         if: ${{ steps.check.outputs.modified }}
