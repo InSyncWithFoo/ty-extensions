@@ -11,16 +11,23 @@ from typing import Final
 import requests
 
 
-_SOURCE_FILE_URL: Final = \
-	'https://raw.githubusercontent.com/astral-sh/ruff/HEAD/crates/ty_vendored/ty_extensions/ty_extensions.pyi'
+_BASE_URL: Final = 'https://raw.githubusercontent.com/astral-sh/ruff/HEAD/crates/ty_vendored/ty_extensions/'
+_FILE_NAMES: Final = [
+	'__init__.pyi',
+	'_internal.pyi',
+	'pydantic.pyi',
+]
 
 _PROJECT_ROOT: Final = Path(__file__).parent
-_TY_EXTENSIONS_PYI: Final = _PROJECT_ROOT / 'src' / 'ty_extensions' / '__init__.pyi'
+_PACKAGE: Final = _PROJECT_ROOT / 'src' / 'ty_extensions'
 
 
 def main() -> None:
-	new_file_content = requests.get(_SOURCE_FILE_URL).text
-	_TY_EXTENSIONS_PYI.write_text(new_file_content, encoding = 'utf-8')
+	for file_name in _FILE_NAMES:
+		url = f'{_BASE_URL}/{file_name}'
+
+		new_file_content = requests.get(url).text
+		(_PACKAGE / file_name).write_text(new_file_content, encoding = 'utf-8')
 
 
 if __name__ == '__main__':
