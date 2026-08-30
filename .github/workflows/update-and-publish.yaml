@@ -35,7 +35,11 @@ jobs:
         name: Check if there are new changes
         id: check
         run: |
-          echo "modified=$(git status --porcelain)" >> $GITHUB_OUTPUT
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "modified=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "modified=false" >> "$GITHUB_OUTPUT"
+          fi
       -
         name: Bump version
         if: ${{ steps.check.outputs.modified }}
