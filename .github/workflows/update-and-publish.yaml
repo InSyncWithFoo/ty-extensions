@@ -80,4 +80,4 @@ jobs:
           uv build
       -
         name: Publish
-        uses: pypa/gh-action-pypi-publish@release/v1.13
+        uses: pypa/gh-action-pypi-publish@release/v1.14
